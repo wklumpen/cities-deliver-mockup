@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 800" width="1500" height="800" role="img" aria-labelledby="arch-title arch-desc">
+  <title id="arch-title">Proposed architecture for North Lawndale Works</title>
+  <desc id="arch-desc">Residents and navigators use an app and API that handles sign-in, roles and consent. It draws on a verified directory, a rules engine and a transit access engine. A frontier model receives redacted inputs, retrieves verified records, cites outputs and withholds when uncertain. Results go to a referral log, with status returned to people. Evaluation and resident council review run alongside the system.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#0f5c55"/></marker>
+    <marker id="arrow-brick" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#a83c24"/></marker>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill: #1f2d33; }
+      .h { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 38px; font-weight: 600; }
+      .sub { font-size: 19px; font-weight: 600; fill: #5b4300; }
+      .t { font-size: 21px; font-weight: 700; }
+      .b { font-size: 17px; fill: #3d4a50; }
+      .small { font-size: 16px; font-weight: 600; fill: #0f5c55; }
+      .small-brick { font-size: 16px; font-weight: 600; fill: #a83c24; }
+      .box { fill: #fff; stroke: #cfc4b1; stroke-width: 1.5; }
+      .tint { fill: #e0f0ec; stroke: #0f5c55; stroke-width: 2; }
+      .model { fill: #0f5c55; }
+      .model-t { fill: #fff; font-size: 25px; font-weight: 700; }
+      .model-b { fill: #e6f5f1; font-size: 19px; }
+      .flow { fill: none; stroke: #0f5c55; stroke-width: 2.5; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #a83c24; stroke-width: 2.5; stroke-dasharray: 8 7; marker-end: url(#arrow-brick); }
+    </style>
+  </defs>
+
+  <rect width="1500" height="800" fill="#fbf6ee"/>
+  <text class="h" x="35" y="52">Proposed architecture</text>
+  <rect x="785" y="24" width="680" height="36" rx="6" fill="#fdf2d8"/>
+  <text class="sub" x="1125" y="49" text-anchor="middle">Illustrative concept, to be tested with residents in months 1–3.</text>
+
+  <!-- status return -->
+  <path class="flow" d="M1365 140V104H140V128"/>
+  <rect x="550" y="90" width="400" height="28" fill="#fbf6ee"/>
+  <text class="small" x="750" y="110" text-anchor="middle">Status back to residents and navigators</text>
+
+  <!-- people -->
+  <rect x="24" y="130" width="232" height="350" rx="16" fill="none" stroke="#cfc4b1" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <rect class="box" x="38" y="145" width="204" height="150" rx="12"/>
+  <text class="t" x="54" y="185">Resident</text>
+  <text class="b" x="54" y="219">Mobile and web</text>
+  <text class="b" x="54" y="245">English, Spanish</text>
+  <text class="b" x="54" y="271">Controls sharing</text>
+  <rect class="box" x="38" y="315" width="204" height="150" rx="12"/>
+  <text class="t" x="54" y="355">Navigator</text>
+  <text class="b" x="54" y="389">Staff accounts</text>
+  <text class="b" x="54" y="415">Referral follow-up</text>
+
+  <!-- app -->
+  <rect class="tint" x="310" y="140" width="210" height="330" rx="14"/>
+  <text class="t" x="330" y="190">App and API</text>
+  <text class="b" x="330" y="240">Sign-in</text>
+  <text class="b" x="330" y="274">Roles</text>
+  <text class="b" x="330" y="308">Consent</text>
+  <text class="b" x="330" y="360">One-time code</text>
+  <text class="b" x="330" y="386">to save plans</text>
+
+  <!-- trusted sources -->
+  <rect class="box" x="575" y="140" width="290" height="100" rx="12"/>
+  <text class="t" x="593" y="178">Verified directory</text>
+  <text class="b" x="593" y="212">Source, owner, verified date</text>
+  <rect class="box" x="575" y="255" width="290" height="100" rx="12"/>
+  <text class="t" x="593" y="293">Rules engine</text>
+  <text class="b" x="593" y="327">Ages, prerequisites, deadlines</text>
+  <rect class="box" x="575" y="370" width="290" height="100" rx="12"/>
+  <text class="t" x="593" y="408">Transit access engine</text>
+  <text class="b" x="593" y="442">GTFS: CTA, Pace, Metra</text>
+
+  <!-- model -->
+  <rect class="model" x="920" y="140" width="290" height="330" rx="14"/>
+  <text class="model-t" x="942" y="190">Frontier model</text>
+  <text class="model-b" x="942" y="240">Redacted inputs</text>
+  <text class="model-b" x="942" y="282">Retrieval over</text>
+  <text class="model-b" x="942" y="308">verified records</text>
+  <text class="model-b" x="942" y="350">Cited outputs</text>
+  <text class="model-b" x="942" y="392">Withholds when</text>
+  <text class="model-b" x="942" y="418">uncertain</text>
+
+  <!-- referral log -->
+  <rect class="tint" x="1265" y="140" width="200" height="330" rx="14"/>
+  <text class="t" x="1283" y="190">Referral log</text>
+  <text class="t" x="1283" y="219">and status</text>
+  <text class="b" x="1283" y="270">Acknowledged</text>
+  <text class="b" x="1283" y="296">in 2 business days</text>
+  <text class="b" x="1283" y="348">Day 5: returns</text>
+  <text class="b" x="1283" y="374">to a named person</text>
+
+  <!-- flows -->
+  <path class="flow" d="M242 220H308"/>
+  <path class="flow" d="M242 390H308"/>
+  <path class="flow" d="M520 190H573"/>
+  <path class="flow" d="M520 305H573"/>
+  <path class="flow" d="M520 420H573"/>
+  <path class="flow" d="M865 190H918"/>
+  <path class="flow" d="M865 305H918"/>
+  <path class="flow" d="M865 420H918"/>
+  <path class="flow" d="M1210 305H1263"/>
+
+  <!-- quality loop -->
+  <path class="loop" d="M720 565V476"/>
+  <text class="small-brick" x="734" y="526">Audits records</text>
+  <path class="loop" d="M1065 565V476"/>
+  <text class="small-brick" x="1079" y="526">Tests answers</text>
+
+  <rect x="310" y="565" width="1155" height="200" rx="16" fill="#fbe9e3" stroke="#a83c24" stroke-width="2"/>
+  <text class="t" x="340" y="610">Evaluation</text>
+  <text class="b" x="340" y="648">100+ English and Spanish scenarios</text>
+  <text class="b" x="340" y="680">95% source-checkable accuracy</text>
+  <text class="b" x="340" y="712">Monthly audits</text>
+  <text class="b" x="340" y="744">Models compared on the same scenarios before selection</text>
+  <line x1="1000" y1="590" x2="1000" y2="740" stroke="#d9a697" stroke-width="1.5"/>
+  <text class="t" x="1030" y="610">Resident council review</text>
+  <text class="b" x="1030" y="648">Residents review what the tool</text>
+  <text class="b" x="1030" y="680">recommends and what it withholds,</text>
+  <text class="b" x="1030" y="712">and their findings shape changes</text>
+</svg>
