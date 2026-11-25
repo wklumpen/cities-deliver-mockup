@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 800" width="1500" height="800" role="img" aria-labelledby="arch-title arch-desc">
-  <title id="arch-title">Proposed architecture for North Lawndale Works</title>
+  <title id="arch-title">Proposed architecture for Earning Power (North Lawndale Works)</title>
   <desc id="arch-desc">Residents and navigators use an app and API that handles sign-in, roles and consent. It draws on a verified directory, a rules engine and a transit access engine. A frontier model receives redacted inputs, retrieves verified records, cites outputs and withholds when uncertain. Results go to a referral log, with status returned to people. Evaluation and resident council review run alongside the system.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#0f5c55"/></marker>

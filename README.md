@@ -1,4 +1,4 @@
-# North Lawndale Works: Round 1 concept prototype
+# Earning Power: North Lawndale Works Round 1 concept prototype
 
 Illustrative concept, to be tested with residents in months 1–3. All names, listings, schedules and phone numbers are synthetic.
 

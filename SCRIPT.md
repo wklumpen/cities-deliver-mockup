@@ -5,7 +5,7 @@ Play the film cut at https://wklumpen.github.io/cities-deliver-mockup/?film and 
 | Time | Screen | Voice-over |
 |---|---|---|
 | 0:00 | Title | Many North Lawndale residents already have the skills for better work. What's missing is the connection. |
-| 0:06 | Conversation | Connect the Dots starts with a conversation. Residents describe what they've done, in their own words, in English or Spanish. |
+| 0:06 | Conversation | Earning Power starts with a conversation. Residents describe what they've done, in their own words, in English or Spanish. |
 | 0:16 | Skills profile | AI turns that story into skills employers recognize, and residents can add anything it missed. |
 | 0:23 | Match | It matches them to verified jobs and training, with the pay, the hours, and the bus home after the shift. |
 | 0:33 | Plan (Spanish) | For a parent aiming for a better-paying career, it builds a training plan around the whole day, including child care. |

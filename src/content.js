@@ -40,7 +40,7 @@ export const REFERRALS = [
 const en = {
   htmlLang: 'en',
   project: 'North Lawndale Works',
-  brand: 'Connect the Dots',
+  brand: 'Earning Power',
   label: 'Illustrative concept, to be tested with residents in months 1–3.',
   switchLanguage: 'Español',
   switchLanguageName: 'Cambiar a español',
@@ -48,11 +48,11 @@ const en = {
   enabler: 'What changes',
   controls: { back: 'Back', next: 'Next', play: 'Play', pause: 'Pause', restart: 'Restart', step: 'Step', of: 'of', name: 'Walkthrough controls' },
   title: {
-    tagline: 'Connect the Dots',
+    tagline: 'Earning Power',
     lead: 'A career tool that starts from what residents have already done, and shows a path they can actually take.',
   },
   end: {
-    heading: 'Connect the Dots',
+    heading: 'Earning Power',
     lead: 'Experience that counts. Options that are real. A path to better work that fits a real life.',
   },
   stories: {
@@ -235,7 +235,7 @@ const en = {
 const es = {
   ...en,
   htmlLang: 'es',
-  brand: 'Conecta los puntos',
+  brand: 'Earning Power',
   label: 'Concepto ilustrativo, que se probará con residentes en los meses 1 a 3.',
   switchLanguage: 'English',
   switchLanguageName: 'Switch to English',
@@ -243,11 +243,11 @@ const es = {
   enabler: 'Qué cambia',
   controls: { back: 'Atrás', next: 'Siguiente', play: 'Reproducir', pause: 'Pausa', restart: 'Reiniciar', step: 'Paso', of: 'de', name: 'Controles del recorrido' },
   title: {
-    tagline: 'Conecta los puntos',
+    tagline: 'Earning Power',
     lead: 'Una herramienta de carrera que parte de lo que los residentes ya han hecho y muestra un camino que realmente pueden tomar.',
   },
   end: {
-    heading: 'Conecta los puntos',
+    heading: 'Earning Power',
     lead: 'Experiencia que cuenta. Opciones reales. Un camino hacia un mejor trabajo que se ajusta a la vida real.',
   },
   stories: {
