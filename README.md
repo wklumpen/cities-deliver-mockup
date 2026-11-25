@@ -4,6 +4,8 @@ Illustrative concept, to be tested with residents in months 1–3. All names, li
 
 **Live:** https://wklumpen.github.io/cities-deliver-mockup/
 
+**One-minute film cut:** https://wklumpen.github.io/cities-deliver-mockup/?film, with its voice-over in [SCRIPT.md](SCRIPT.md).
+
 ## Using it
 
 - On a computer, it shows a 16:9 video stage. Press **Play** for a hands-free walkthrough (about 4:20). The controls fade when the mouse is still.

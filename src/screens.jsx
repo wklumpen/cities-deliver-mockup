@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { REFERRALS, SHARE_FIELDS } from './content.js'
 
 const INTAKE_DELAYS = [500, 4500, 11000, 16000, 23000]
+const INTAKE_DELAYS_FAST = [300, 1600, 3600, 5400, 7200]
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches
 
 function Check() {
@@ -12,13 +13,13 @@ function Alert() {
   return <svg className="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8 15 14H1L8 1.8Z" fill="currentColor" /><path d="M8 6v4M8 11.8v.2" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" /></svg>
 }
 
-export function Intake({ t, onNext }) {
+export function Intake({ t, fast, onNext }) {
   const total = t.script.length
   const [shown, setShown] = useState(() => (reducedMotion() ? total : 0))
 
   useEffect(() => {
     if (reducedMotion()) return
-    const ids = INTAKE_DELAYS.map((delay, i) => setTimeout(() => setShown(i + 1), delay))
+    const ids = (fast ? INTAKE_DELAYS_FAST : INTAKE_DELAYS).map((delay, i) => setTimeout(() => setShown(i + 1), delay))
     return () => ids.forEach(clearTimeout)
   }, [])
 
@@ -37,7 +38,7 @@ export function Intake({ t, onNext }) {
   )
 }
 
-export function Skills({ t, skills, setSkills, playing, onNext }) {
+export function Skills({ t, skills, setSkills, playing, fast, onNext }) {
   const [adding, setAdding] = useState(false)
   const [edited, setEdited] = useState(null)
   const draft = edited ?? t.items.welcome[0]
@@ -54,13 +55,13 @@ export function Skills({ t, skills, setSkills, playing, onNext }) {
 
   useEffect(() => {
     if (!playing || hasWelcome) return
-    const open = setTimeout(() => setAdding(true), 7000)
+    const open = setTimeout(() => setAdding(true), fast ? 2000 : 7000)
     const save = setTimeout(() => {
       setSkills((list) => (list.includes('welcome') ? list : [...list, 'welcome']))
       setAdding(false)
-    }, 11000)
+    }, fast ? 4500 : 11000)
     return () => { clearTimeout(open); clearTimeout(save) }
-  }, [playing, hasWelcome, setSkills])
+  }, [playing, fast, hasWelcome, setSkills])
 
   return (
     <div className="screen">
@@ -195,16 +196,16 @@ export function Share({ t, sharing, setSharing, onNext }) {
   )
 }
 
-export function Updates({ t, playing }) {
+export function Updates({ t, playing, fast }) {
   const [reply, setReply] = useState(null)
   const [reason, setReason] = useState(null)
 
   useEffect(() => {
     if (!playing) return
-    const pick = setTimeout(() => setReason((r) => r ?? 0), 6000)
-    const confirm = setTimeout(() => setReply((r) => r ?? 'confirmed'), 13000)
+    const confirm = setTimeout(() => setReply((r) => r ?? 'confirmed'), fast ? 3000 : 6000)
+    const pick = setTimeout(() => setReason((r) => r ?? 0), fast ? 8000 : 13000)
     return () => { clearTimeout(pick); clearTimeout(confirm) }
-  }, [playing])
+  }, [playing, fast])
 
   return (
     <div className="screen">

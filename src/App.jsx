@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { COPY, DEFAULT_SHARING, DEFAULT_SKILLS, STEPS } from './content.js'
+import { COPY, DEFAULT_SHARING, DEFAULT_SKILLS, FILM_STEPS, STEPS } from './content.js'
 import { Fallback, Intake, Match, Navigator, Plan, Share, Skills, Updates } from './screens.jsx'
 
 const STAGE_W = 1600
 const STAGE_H = 900
 const WIDE_FROM = 900
+const PLAYLIST = new URLSearchParams(location.search).has('film') ? FILM_STEPS : STEPS
 
-const indexFromHash = () => Math.max(0, STEPS.findIndex((s) => s.id === location.hash.slice(1)))
+const indexFromHash = () => Math.max(0, PLAYLIST.findIndex((s) => s.id === location.hash.slice(1)))
 
 function useViewport() {
   const read = () => ({
@@ -52,17 +53,17 @@ export default function App() {
     }
   }, [wakeControls])
 
-  const step = STEPS[index]
+  const step = PLAYLIST[index]
   const lang = langOverride ?? step.lang ?? baseLang
   const t = COPY[lang]
   const screen = step.screen ?? step.id
 
   const go = useCallback((next) => {
-    const clamped = Math.min(STEPS.length - 1, Math.max(0, next))
+    const clamped = Math.min(PLAYLIST.length - 1, Math.max(0, next))
     moved.current = true
     setLangOverride(null)
     setIndex(clamped)
-    history.replaceState(null, '', `#${STEPS[clamped].id}`)
+    history.replaceState(null, '', `#${PLAYLIST[clamped].id}`)
   }, [])
 
   const restart = useCallback(() => {
@@ -93,7 +94,7 @@ export default function App() {
 
   useEffect(() => {
     if (!playing) return
-    if (index === STEPS.length - 1) {
+    if (index === PLAYLIST.length - 1) {
       const id = setTimeout(() => setPlaying(false), step.seconds * 1000)
       return () => clearTimeout(id)
     }
@@ -130,13 +131,14 @@ export default function App() {
   )
 
   let body
-  if (step.kind === 'title') {
+  if (step.kind === 'title' || step.kind === 'end') {
+    const card = step.kind === 'end' ? { tagline: t.end.heading, lead: t.end.lead } : t.title
     body = (
       <main className="title-card" ref={mainRef} tabIndex={-1}>
-        <div className="title-lang">{langButton}</div>
+        {!playing && <div className="title-lang">{langButton}</div>}
         <p className="eyebrow">{t.project}</p>
-        <h1>{t.title.tagline}</h1>
-        <p className="title-lead">{t.title.lead}</p>
+        <h1>{card.tagline}</h1>
+        <p className="title-lead">{card.lead}</p>
         <Dots />
         <p className="concept-label">{t.label}</p>
       </main>
@@ -152,13 +154,13 @@ export default function App() {
           </header>
           <p className="concept-label">{t.label}</p>
           <main className="phone-body" ref={mainRef} tabIndex={-1} key={key}>
-            {screen === 'intake' && <Intake t={t.intake} onNext={next} />}
-            {screen === 'skills' && <Skills t={t.skills} skills={skills} setSkills={setSkills} playing={playing} onNext={next} />}
+            {screen === 'intake' && <Intake t={t.intake} fast={step.fast} onNext={next} />}
+            {screen === 'skills' && <Skills t={t.skills} skills={skills} setSkills={setSkills} playing={playing} fast={step.fast} onNext={next} />}
             {screen === 'match' && <Match t={t.match} onNext={next} />}
             {screen === 'fallback' && <Fallback t={t.fallback} onNext={next} />}
-            {screen === 'plan' && <Plan t={t.plan} onNext={() => go(STEPS.findIndex((s) => s.id === 'share'))} />}
+            {screen === 'plan' && <Plan t={t.plan} onNext={() => { const share = PLAYLIST.findIndex((s) => s.id === 'share'); go(share >= 0 ? share : index + 1) }} />}
             {screen === 'share' && <Share t={t.share} sharing={sharing} setSharing={setSharing} onNext={next} />}
-            {screen === 'updates' && <Updates t={t.updates} playing={playing} />}
+            {screen === 'updates' && <Updates t={t.updates} playing={playing} fast={step.fast} />}
           </main>
         </div>
       </div>
@@ -189,8 +191,8 @@ export default function App() {
       {!playing && (
         <nav className={controlsIdle ? 'controls idle' : 'controls'} aria-label={t.controls.name}>
           <button type="button" onClick={() => go(index - 1)} disabled={index === 0}>{t.controls.back}</button>
-          <span className="counter">{t.controls.step} {index + 1} {t.controls.of} {STEPS.length}</span>
-          <button type="button" onClick={next} disabled={index === STEPS.length - 1}>{t.controls.next}</button>
+          <span className="counter">{t.controls.step} {index + 1} {t.controls.of} {PLAYLIST.length}</span>
+          <button type="button" onClick={next} disabled={index === PLAYLIST.length - 1}>{t.controls.next}</button>
           {wide && <button type="button" className="primary" onClick={() => setPlaying(true)}>{t.controls.play}</button>}
           {wide && <button type="button" onClick={restart}>{t.controls.restart}</button>}
         </nav>

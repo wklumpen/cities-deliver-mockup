@@ -14,6 +14,17 @@ export const STEPS = [
   { id: 'architecture', kind: 'diagram', seconds: 45 },
 ]
 
+// One-minute film cut, opened with ?film. Timings match SCRIPT.md.
+export const FILM_STEPS = [
+  { id: 'title', kind: 'title', seconds: 6 },
+  { id: 'intake', kind: 'phone', seconds: 10, fast: true },
+  { id: 'skills', kind: 'phone', seconds: 7, fast: true },
+  { id: 'match', kind: 'phone', seconds: 10 },
+  { id: 'plan-es', screen: 'plan', kind: 'phone', lang: 'es', seconds: 11 },
+  { id: 'updates', kind: 'phone', seconds: 12, fast: true },
+  { id: 'end', kind: 'end', seconds: 4 },
+]
+
 export const DEFAULT_SKILLS = ['events', 'flyers', 'records', 'problems', 'families']
 export const DEFAULT_SHARING = { plan: true, trip: true, skills: true, childcare: false, contact: true }
 export const SHARE_FIELDS = ['plan', 'trip', 'skills', 'childcare', 'contact']
@@ -39,6 +50,10 @@ const en = {
   title: {
     tagline: 'Connect the Dots',
     lead: 'A career tool that starts from what residents have already done, and shows a path they can actually take.',
+  },
+  end: {
+    heading: 'Connect the Dots',
+    lead: 'Experience that counts. Options that are real. A path to better work that fits a real life.',
   },
   stories: {
     intake: { barrier: '“I don’t know what jobs my experience counts for.”', enabler: 'People describe their lives in their own words. Work, caregiving and volunteering all count.' },
@@ -230,6 +245,10 @@ const es = {
   title: {
     tagline: 'Conecta los puntos',
     lead: 'Una herramienta de carrera que parte de lo que los residentes ya han hecho y muestra un camino que realmente pueden tomar.',
+  },
+  end: {
+    heading: 'Conecta los puntos',
+    lead: 'Experiencia que cuenta. Opciones reales. Un camino hacia un mejor trabajo que se ajusta a la vida real.',
   },
   stories: {
     intake: { barrier: '“No sé para qué trabajos cuenta mi experiencia.”', enabler: 'Cada persona describe su vida con sus propias palabras. El trabajo, el cuidado de otros y el voluntariado cuentan.' },
