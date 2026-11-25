@@ -195,6 +195,64 @@ export function Share({ t, sharing, setSharing, onNext }) {
   )
 }
 
+export function Updates({ t, playing }) {
+  const [reply, setReply] = useState(null)
+  const [reason, setReason] = useState(null)
+
+  useEffect(() => {
+    if (!playing) return
+    const pick = setTimeout(() => setReason((r) => r ?? 0), 6000)
+    const confirm = setTimeout(() => setReply((r) => r ?? 'confirmed'), 13000)
+    return () => { clearTimeout(pick); clearTimeout(confirm) }
+  }, [playing])
+
+  return (
+    <div className="screen">
+      <h1>{t.heading}</h1>
+      <article className="card reminder">
+        <p className="eyebrow">{t.reminderWhen}</p>
+        <h2>{t.reminderTitle}</h2>
+        <p className="update-text">{t.reminderDetails}</p>
+        <div aria-live="polite">
+          {reply ? (
+            <p className="reply"><Check />{reply === 'confirmed' ? t.confirmed : t.rescheduling}</p>
+          ) : (
+            <div className="actions">
+              <button type="button" className="small-primary" onClick={() => setReply('confirmed')}>{t.confirm}</button>
+              <button type="button" className="small-secondary" onClick={() => setReply('reschedule')}>{t.reschedule}</button>
+            </div>
+          )}
+        </div>
+      </article>
+      <article className="card">
+        <span className="badge neutral">{t.notSelected}</span>
+        <h2>{t.rejectTitle}</h2>
+        <p className="muted">{t.rejectOrg}</p>
+        <dl className="update-facts">
+          <div><dt>{t.reasonLabel}</dt><dd>{t.reason}</dd></div>
+          <div><dt>{t.nextLabel}</dt><dd>{t.next}</dd></div>
+        </dl>
+      </article>
+      <article className="card">
+        <span className="badge note">{t.missed}</span>
+        <h2>{t.missedTitle}</h2>
+        <div aria-live="polite">
+          {reason === null ? (
+            <>
+              <p className="update-text" id="missed-ask">{t.missedAsk}</p>
+              <div className="chips" role="group" aria-labelledby="missed-ask">
+                {t.reasons.map((r, i) => <button key={r} type="button" onClick={() => setReason(i)}>{r}</button>)}
+              </div>
+            </>
+          ) : (
+            <p className="reply"><Check />{t.missedThanks}</p>
+          )}
+        </div>
+      </article>
+    </div>
+  )
+}
+
 export function Navigator({ t, label, langButton, sharing, followedUp, setFollowedUp }) {
   const [selected, setSelected] = useState('dana')
   const statusOf = (row) => (row.id === 'dana' && followedUp ? 'followed' : row.status)

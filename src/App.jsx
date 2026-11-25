@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { COPY, DEFAULT_SHARING, DEFAULT_SKILLS, STEPS } from './content.js'
-import { Fallback, Intake, Match, Navigator, Plan, Share, Skills } from './screens.jsx'
+import { Fallback, Intake, Match, Navigator, Plan, Share, Skills, Updates } from './screens.jsx'
 
 const STAGE_W = 1600
 const STAGE_H = 900
@@ -158,6 +158,7 @@ export default function App() {
             {screen === 'fallback' && <Fallback t={t.fallback} onNext={next} />}
             {screen === 'plan' && <Plan t={t.plan} onNext={() => go(STEPS.findIndex((s) => s.id === 'share'))} />}
             {screen === 'share' && <Share t={t.share} sharing={sharing} setSharing={setSharing} onNext={next} />}
+            {screen === 'updates' && <Updates t={t.updates} playing={playing} />}
           </main>
         </div>
       </div>
